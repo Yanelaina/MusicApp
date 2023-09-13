@@ -133,7 +133,7 @@ img {
     border: 10px solid var(--border02);
     border-radius: 50%;
     box-shadow: var(--box-shadow03);
-    animation: rotation 8s infinite linear;
+    /* animation: rotation 8s infinite linear; */
     transform-origin: center;
 
 } 

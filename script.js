@@ -1,8 +1,8 @@
 const wrapper = document.querySelector('.wrapper'),
-    musicImg = wrapper.querySelector('img'),
+    musicImg = wrapper.querySelector('#image'),
     musicName = wrapper.querySelector(".name"),
     musicArtist = wrapper.querySelector(".artist"),
-    playPauseBtn = wrapper.querySelector("play-pause"),
+    playPauseBtn = wrapper.querySelector(".play-pause"),
     nextBtn = wrapper.querySelector("#next"),
     prevBtn = wrapper.querySelector("#prev"),
     mainAudio = wrapper.querySelector("#main-audio"),
@@ -12,39 +12,39 @@ const wrapper = document.querySelector('.wrapper'),
 
 let allMusic = [
     {
-        name: "Chasse à l'homme", 
+        name: `Chasse à l'homme`, 
         artist: "Niska", 
-        img: "547117-bigthumbnail", 
-        src: "13 Niska - Chasse à l homme"
+        img: `547117-bigthumbnail`, 
+        src: `13 Niska - Chasse à l homme`
         
     }, 
 
     {
-        name: "14- 01h25 - Johnny Galoche", 
+        name: `14- 01h25 - Johnny Galoche`, 
         artist: "Casseurs Flowters", 
-        img: "thumb-1920-649995", 
-        src: "14 Casseurs Flowters - 01h25 - Johnny Galoche"
+        img: `thumb-1920-649995`, 
+        src: `14 Casseurs Flowters - 01h25 - Johnny Galoche`
         
     }, 
     {
-        name: "Adele - Easy On Me",
-        artist: "Yanel Aina", 
-        img: "wp1834002", 
-        src: "Adele - Easy On Me"
+        name: `Adele - Easy On Me`,
+        artist: "Adele", 
+        img: `wp1834002`, 
+        src: `Adele - Easy On Me`
         
     },
     {
-        name: "Burna Boy - How Bad Could It Be",
-        artist: "Yanel Aina", 
-        img: "wp2080976", 
-        src: "Burna Boy - How Bad Could It Be"
+        name: `Burna Boy - How Bad Could It Be`,
+        artist: "Burna Boy", 
+        img: `wp2080976`, 
+        src: `Burna Boy - How Bad Could It Be`
         
     }, 
     {
-        name: "Dadju - Picsou", 
+        name: `Dadju - Picsou`, 
         artist: "Dadju", 
-        img: "wp4089822", 
-        src: "Dadju - Picsou"
+        img: `wp4089822`, 
+        src: `Dadju - Picsou`
         
     }
 
@@ -56,23 +56,36 @@ isMusicPaused =  true;
 
 
 window.addEventListener('load', () => {
-    loadMusic(musicIndex)
+    loadMusic(musicIndex);
+
 } );
 
 function loadMusic(indexNumb) {
     musicName.innerText = allMusic[indexNumb -1].name;
     musicArtist.innerText = allMusic[indexNumb -1].artist;
-    musicImg.src = `/assets/image/${allMusic[indexNumb - 1].src}.jpg`;
-    mainAudio.src = `/assets/songs/${allMusic[indexNumb - 1].src}.mp3`;
+    musicImg.src = `assets/images/${allMusic[indexNumb - 1].img}.jpg`;
+    mainAudio.src = `assets/songs/${allMusic[indexNumb - 1].src}.mp3`;
+
+    console.log("music", musicImg.src)
     
 }
 
 function playMusic() {
     wrapper.classList.add("paused"); 
     musicImg.classList.add('rotate');
+    playPauseBtn.innerHTML = `<i class="fi fi-sr-pause"></i>`;
+    mainAudio.play();
+}
+
+function pauseMusic() { 
+    wrapper.classList.remove("paused"); 
+    musicImg.classList.remove('rotate');
+    console.log("Bonjour")
     playPauseBtn.innerHTML = `<i class="fi fi-sr-play"></i>`;
     mainAudio.pause();
+
 }
+
 
 function prevMusic() {
     musicIndex--;
